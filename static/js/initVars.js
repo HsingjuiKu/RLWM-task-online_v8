@@ -44,6 +44,6 @@ console.log(IMGS);
 let fixation = ({
     type: "html-keyboard-response",
     stimulus: "<div class='exp'><p class='fix center'>+</p></div>",
-    choices: jsPsych.NO_KEYS,
+    choices: "NO_KEYS",
     trial_duration: FB_DUR,
   })

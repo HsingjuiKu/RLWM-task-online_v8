@@ -50,9 +50,9 @@ if (IS_RUN_TRAIN) { // for debugging purposes
       let toSave = jsPsych.data.get(); // retrieve all data to save
       save_data_csv(file_name,toSave); // save final file as csv
     },
-    type: "html-keyboard-response",
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: "<div class='center'><p>Saving data... please do not close this window. This will take a few seconds. </p></div>",
-    choices: jsPsych.NO_KEYS,
+    choices: "NO_KEYS",
     trial_duration: 5000, // change this depending on how large your file is
     // on_finish: function() {
     //     jsPsych.data.displayData('csv');
@@ -65,9 +65,9 @@ if (IS_RUN_TRAIN) { // for debugging purposes
   Sona, or the next part of the experiment. Make sure your redirect link has
   "id=${subjID}" appended at the very end.*/
   timeline.push({
-    type: "html-keyboard-response",
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: `<div class='center'><p>Data saved. Click <a href='${END_LINK}?id=${subjID}'>here</a> to proceed to the next task.</p></div>`,
-    choices: jsPsych.NO_KEYS,
+    choices: "NO_KEYS",
   });
 
   return timeline;
@@ -195,7 +195,7 @@ const createRevTrial = function(b,t,folder,stim,bStart,correct_counter_vec,rever
   }
 	// initialize the trial object
   let trial = {
-    type: "categorize-html",
+    type: jsPsychCategorizeHtml,
     correct_text: COR_FB,
     incorrect_text: INCOR_FB,
     on_start: setTrial,
@@ -249,14 +249,14 @@ const createPractice2 = function(b,seqs) {
   }
   timeline.push({
     on_start: setStim,
-    type: "html-keyboard-response",
+    type: jsPsychHtmlKeyboardResponse,
     choices: [32],
     // you may want to make this timed so participants can't stay on this trial forever
   });
 
   //  create trials, interleaving them with fixation
   // var kill_practice = 0;
-  
+
   for (t = 0; t < Math.floor(numTrials/2); t++) {
     // console.log("kill practice?")
     // console.log(kill_practice)
@@ -280,7 +280,7 @@ const createPractice2 = function(b,seqs) {
   }
   timeline.push({
     on_start: intermedFed,
-    type: "html-keyboard-response",
+    type: jsPsychHtmlKeyboardResponse,
     choices: [32],
     trial_duration: 30000,
   });
@@ -348,7 +348,7 @@ const createPracticeRevTrial = function(b,t,folder,stim,bStart,correct_counter_v
   }
   // initialize the trial object
   let trial = {
-    type: "categorize-html",
+    type: jsPsychCategorizeHtml,
     correct_text: PRAC_COR_FB,
     incorrect_text: PRAC_INCOR_FB,
     on_start: setTrial,
@@ -416,7 +416,7 @@ const createPracticeRevTrial1 = function(b,t,folder,stim,bStart,correct_counter_
   }
   // initialize the trial object
   let trial = {
-    type: "categorize-html",
+    type: jsPsychCategorizeHtml,
     correct_text: COR_FB,
     incorrect_text: INCOR_FB,
     on_start: setTrial,
@@ -457,7 +457,7 @@ const createPracticeTrial = function(b,t,folder,stim,cor,bStart) {
   }
   // initialize the trial object
   let trial = {
-    type: "categorize-html",
+    type: jsPsychCategorizeHtml,
     correct_text: PRAC_COR_FB,
     incorrect_text: PRAC_INCOR_FB,
     on_start: setTrial,
@@ -494,7 +494,7 @@ const createPracticeTrial1 = function(b,t,folder,stim,cor,bStart) {
   }
   // initialize the trial object
   let trial = {
-    type: "categorize-html",
+    type: jsPsychCategorizeHtml,
     correct_text: COR_FB,
     incorrect_text: INCOR_FB,
     on_start: setTrial,
@@ -536,7 +536,7 @@ const createPracticeBlock = function(b,seqs) {
   }
   timeline.push({
     on_start: setStim,
-    type: "html-keyboard-response",
+    type: jsPsychHtmlKeyboardResponse,
     choices: [32],
     // you may want to make this timed so participants can't stay on this trial forever
   });
@@ -564,7 +564,7 @@ const createPracticeBlock = function(b,seqs) {
 
   timeline.push({
     on_start: intermedFed,
-    type: "html-keyboard-response",
+    type: jsPsychHtmlKeyboardResponse,
     choices: [32],
     trial_duration: 30000,
   });
