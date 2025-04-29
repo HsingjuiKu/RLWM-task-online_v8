@@ -125,7 +125,7 @@ const createInstructions1 = function() {
         </p>
       </div>
       ` + CONTINUE,
-    choices: [32],
+    choices: [' '],
   });
 
   timeline.push({
@@ -138,7 +138,7 @@ const createInstructions1 = function() {
         </p>
       </div>
       ` + CONTINUE,
-    choices: [32],
+    choices: [' '],
   });
 
   timeline.push({
@@ -153,7 +153,7 @@ const createInstructions1 = function() {
         </p>
       </div>
       ` + CONTINUE,
-    choices: [32],
+    choices: [' '],
   });
 
   timeline.push({
@@ -165,7 +165,7 @@ const createInstructions1 = function() {
         </p>
       </div>
       ` + CONTINUE,
-    choices: [32],
+    choices: [' '],
   });
 
   timeline.push({
@@ -177,7 +177,7 @@ const createInstructions1 = function() {
         </p>
       </div>
       ` + CONTINUE,
-    choices: [32],
+    choices: [' '],
   });
 };
 
@@ -197,7 +197,7 @@ const createInstructions2 = function() {
         </p>
       </div>
       ` + CONTINUE,
-    choices: [32],
+    choices: [' '],
   });
 
   timeline.push({
@@ -210,7 +210,7 @@ const createInstructions2 = function() {
         </p>
       </div>
       ` + CONTINUE,
-    choices: [32],
+    choices: [' '],
   });
 
   timeline.push({
@@ -222,7 +222,7 @@ const createInstructions2 = function() {
         </p>
       </div>
       ` + CONTINUE,
-    choices: [32],
+    choices: [' '],
   });
 };
 
@@ -242,7 +242,7 @@ const createInstructions3 = function() {
         </p>
       </div>
       ` + CONTINUE,
-    choices: [32],
+    choices: [' '],
   });
 
   timeline.push({
@@ -256,7 +256,7 @@ const createInstructions3 = function() {
         </p>
       </div>
       ` + CONTINUE,
-    choices: [32],
+    choices: [' '],
   });
 
   timeline.push({
@@ -271,6 +271,6 @@ const createInstructions3 = function() {
         </p>
       </div>
       ` + CONTINUE,
-    choices: [32],
+    choices: [' '],
   });
 };

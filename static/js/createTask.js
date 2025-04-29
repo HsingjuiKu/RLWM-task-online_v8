@@ -110,9 +110,10 @@ const createRevBlock = function(b,seqs) {
   // push the instructions showing all block images to timeline before trials
   }
   timeline.push({
+    stimulus: "",
     on_start: setStim,
-    type: "html-keyboard-response",
-    choices: [32],
+    type: jsPsychHtmlKeyboardResponse,
+    choices: [' '],
     // you may want to make this timed so participants can't stay on this trial forever
   });
 
@@ -139,9 +140,10 @@ const createRevBlock = function(b,seqs) {
   }
   // push block end points and instructions
   timeline.push({
+    stimulus: "",
     on_start: setPoints,
-    type: "html-keyboard-response",
-    choices: [32],
+    type: jsPsychHtmlKeyboardResponse,
+    choices: [' '],
     trial_duration: 60000,
   });
 }
@@ -195,7 +197,7 @@ const createRevTrial = function(b,t,folder,stim,bStart,correct_counter_vec,rever
   }
 	// initialize the trial object
   let trial = {
-    type: jsPsychCategorizeHtml,
+    type: "categorize-html",
     correct_text: COR_FB,
     incorrect_text: INCOR_FB,
     on_start: setTrial,
@@ -248,9 +250,10 @@ const createPractice2 = function(b,seqs) {
   // push the instructions showing all block images to timeline before trials
   }
   timeline.push({
+    stimulus: "",
     on_start: setStim,
     type: jsPsychHtmlKeyboardResponse,
-    choices: [32],
+    choices: [' '],
     // you may want to make this timed so participants can't stay on this trial forever
   });
 
@@ -279,9 +282,10 @@ const createPractice2 = function(b,seqs) {
     }
   }
   timeline.push({
+    stimulus: "",
     on_start: intermedFed,
     type: jsPsychHtmlKeyboardResponse,
-    choices: [32],
+    choices: [' '],
     trial_duration: 30000,
   });
 
@@ -348,7 +352,7 @@ const createPracticeRevTrial = function(b,t,folder,stim,bStart,correct_counter_v
   }
   // initialize the trial object
   let trial = {
-    type: jsPsychCategorizeHtml,
+    type: "categorize-html",
     correct_text: PRAC_COR_FB,
     incorrect_text: PRAC_INCOR_FB,
     on_start: setTrial,
@@ -416,7 +420,7 @@ const createPracticeRevTrial1 = function(b,t,folder,stim,bStart,correct_counter_
   }
   // initialize the trial object
   let trial = {
-    type: jsPsychCategorizeHtml,
+    type: "categorize-html",
     correct_text: COR_FB,
     incorrect_text: INCOR_FB,
     on_start: setTrial,
@@ -457,7 +461,7 @@ const createPracticeTrial = function(b,t,folder,stim,cor,bStart) {
   }
   // initialize the trial object
   let trial = {
-    type: jsPsychCategorizeHtml,
+    type: "categorize-html",
     correct_text: PRAC_COR_FB,
     incorrect_text: PRAC_INCOR_FB,
     on_start: setTrial,
@@ -494,7 +498,7 @@ const createPracticeTrial1 = function(b,t,folder,stim,cor,bStart) {
   }
   // initialize the trial object
   let trial = {
-    type: jsPsychCategorizeHtml,
+    type: "categorize-html",
     correct_text: COR_FB,
     incorrect_text: INCOR_FB,
     on_start: setTrial,
@@ -535,9 +539,10 @@ const createPracticeBlock = function(b,seqs) {
   // push the instructions showing all block images to timeline before trials
   }
   timeline.push({
+    stimulus: "",
     on_start: setStim,
     type: jsPsychHtmlKeyboardResponse,
-    choices: [32],
+    choices: [' '],
     // you may want to make this timed so participants can't stay on this trial forever
   });
 
@@ -565,7 +570,8 @@ const createPracticeBlock = function(b,seqs) {
   timeline.push({
     on_start: intermedFed,
     type: jsPsychHtmlKeyboardResponse,
-    choices: [32],
+    stimulus: "",
+    choices: [' '],
     trial_duration: 30000,
   });
 

@@ -8,7 +8,7 @@
   <script src="https://unpkg.com/jspsych@8.2.1"></script>
 
   <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-categorize-html@2.0.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-categorize-html@2.1.0"></script>
   <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@2.1.0"></script>
   <script src="https://unpkg.com/@jspsych/plugin-preload@2.1.0"></script>
 
@@ -22,6 +22,8 @@
   <script src="static/js/createTask.js"></script>
   <script src="static/js/createInstructions.js"></script>
   <script src="static/js/saveMailUpload.js"></script>
+
+
 </head>
 
 <body></body>
@@ -73,5 +75,15 @@
           });
 
 
+</script>
+
+
+<script>
+  console.log(
+          "HtmlKb:", typeof jsPsychHtmlKeyboardResponse,
+          "CatHtml:", typeof jsPsychCategorizeHtml,
+          "ImgKb:",  typeof jsPsychImageKeyboardResponse,
+          "Preld:",  typeof jsPsychPreload
+  );
 </script>
 </html>
