@@ -1,34 +1,23 @@
 <?php
 
-if (isset($_POST['data_dir']) == true)
-{
-    $data_dir = $_POST['data_dir']; // data directory
-}
-
-if (isset($_POST['file_name']) == true)
-{
-    $file_name = $_POST['file_name']; // mturk_id
-}
-
-// temporary names for debugging
-// $data_dir = 'data';
-// $file_name = 'RLEM_c2_subj3_2021-5-27_18_21.csv';
+$data_dir = 'data';
+$file_name = ''; // replace as needed
 
 $url = 'https://upload.box.com/api/2.0/files/content';
 $json = json_encode(array(
 'name' => $file_name, // file name to be created on the box -- should be $file_name like mailer.php
-'parent' => array('id' => 319426353072) // demo task folder -- REPLACE WITH YOUR FOLDER ID
+'parent' => array('id' => 319426353072) // folder ID - copy from uploader.php
 ));
 $params = array(
 'attributes' => $json,
 
 'file'=>new \CurlFile($data_dir.'/'.$file_name, // name (+ directory) of file to be uploaded
-                     'text/csv', // MIME type of file, text/csv or application/JSON
+                     'text/csv', // MIME type of file - change according to file being uploaded
                      $file_name // name of file in upload data
                     )
 );
-
-$headers = array("Authorization: Bearer BOX_ACCESS_TOKEN");
+// $headers = array("Authorization: Bearer Q8HhJDk3JnRhBQPeYnoNP7vgcx4AEjlW"); primary access token
+$headers = array("Authorization: Bearer XXKRqMHHSaqu9seQ8W2egTQRmpaC19I8");
 
 // leave section below alone
 
