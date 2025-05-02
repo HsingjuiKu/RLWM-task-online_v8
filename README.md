@@ -51,17 +51,6 @@ This repository contains the online implementation of the RLWM (Reinforcement Le
 
 ---
 
-## ⚠ Known Issues / Debugging Tips
-
-- **Plugin Errors** (e.g., “must specify 'stimulus'” or “'key_answer'”):
-  - Ensure `on_start` properly sets `trial.stimulus` and `trial.key_answer`.
-  - Check that `KEYS[cor]` is always valid and not undefined.
-- **Spacebar not advancing:** Make sure `choices: [' ']` is correctly assigned and no blocking overlay is covering the interface.
-- **Slow image loading:** Confirm correct image path and preload all necessary images using `IMGS`.
-- **Timeout issues:** Consider increasing `TRIAL_DUR` in `initVars.js` if participants frequently see “You took too long to respond!”
-
----
-
 ## 📎 References
 
 - jsPsych: https://www.jspsych.org
