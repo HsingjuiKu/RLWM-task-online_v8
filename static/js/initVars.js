@@ -2,6 +2,11 @@
 imported before your other JS files containing your functions, especially if those
 functions rely on these variables as globals. */
 
+
+const urlParams = new URLSearchParams(window.location.search);
+const IS_DEBUG = urlParams.get("debug") === "true";
+
+
 const IS_RUN_PRACTICE = true;
 const IS_RUN_TRAIN = true;
 
@@ -20,12 +25,20 @@ let FIX_DUR = 500;
 const imgP = 'static/img/';
 
 // feedback/timeout messages
-const TO_MSG = '<div class="exp"><p class="center fb">You took too long to respond!</p></div>';
-const COR_FB = '<div class="exp"><p class="center fb cor">+1</p></div>';
-const INCOR_FB = '<div class="exp"><p class="center fb incor">0</p></div>';
+// const TO_MSG = '<div class="exp"><p class="center fb">You took too long to respond!</p></div>';
+// const COR_FB = '<div class="exp"><p class="center fb cor">+1</p></div>';
+// const INCOR_FB = '<div class="exp"><p class="center fb incor">0</p></div>';
 
-const PRAC_COR_FB = '<div class="exp"><p class="center praccor fb">CORRECT KEY!</p></div>';
-const PRAC_INCOR_FB = '<div class="exp"><p class="center pracincor fb">WRONG KEY! <br><br> try a different key! </p></div>';
+const COR_FB    = `<span style="font-size:2em;color:green;">+1</span>`;
+const INCOR_FB  = `<span style="font-size:2em;color:red;">0</span>`;
+const TO_MSG    = `<span style="font-size:2em;color:red;">0</span>`;
+
+
+// const PRAC_COR_FB = '<div class="exp"><p class="center praccor fb">CORRECT KEY!</p></div>';
+// const PRAC_INCOR_FB = '<div class="exp"><p class="center pracincor fb">WRONG KEY! <br><br> try a different key! </p></div>';
+
+const PRAC_COR_FB   = COR_FB;
+const PRAC_INCOR_FB = INCOR_FB;
 
 const CONTINUE = '<p class="continue">[Press SPACE to continue]</p>'; // instruction page footer
 const END_LINK = "http://ucbpsych.qualtrics.com/jfe/form/SV_cZqzukGcYdKQOHQ" // if participants need to be redirected to a page to obtain credit

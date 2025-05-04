@@ -7,7 +7,9 @@ const upload_url = "https://experiments-ccn.berkeley.edu/demo-RLWM-JS/uploader.p
 const mail_url = "https://experiments-ccn.berkeley.edu/demo-RLWM-JS/data/mailer.php";
 
 // name of folder where data will be saved
-const data_dir = "data";
+// const data_dir = "data";
+const data_dir = "319426353072";
+
 
 // save data as csv
 const save_data_csv = function(file_name,toSave) {

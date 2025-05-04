@@ -58,23 +58,24 @@
   let file_name = `demoRLWM_${subjID}_${date}_${start_time}`;
 
   // Track number of times participant switches away from the tab
+  const IS_DEBUG = urlParams.get('debug') === 'true';
   let num_tab_switches = 0;
   document.addEventListener("visibilitychange", () => {
+    if (IS_DEBUG) return;              // 调试模式时不做任何检查
     if (document.visibilityState === "hidden") {
       if (num_tab_switches >= 3) {
-        // If too many switches, end the experiment immediately
         console.log('Ending exp: too many tab switches');
         setTimeout(() => {
           jsPsych.finishTrial();
           jsPsych.endExperiment('Task ended. Thank you!');
         }, 0);
       } else {
-        // Otherwise, warn the participant
         num_tab_switches++;
         alert(`Please stay on the task page! You left ${num_tab_switches} time(s).`);
       }
     }
   });
+
 
   // Before closing or reloading, attempt to touch/save data one last time
   window.addEventListener('beforeunload', function (e) {
