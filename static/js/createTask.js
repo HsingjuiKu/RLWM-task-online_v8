@@ -199,7 +199,7 @@ const createRevTrial = function(b,t,folder,stim,bStart,correct_counter_vec,rever
   let trial = {
     type: jsPsychCategorizeHtml,
     stimulus: '',
-    key_answer: KEYS[0],
+    // key_answer: KEYS[0],
     correct_text: COR_FB,
     incorrect_text: INCOR_FB,
     on_start: setTrial,
@@ -356,7 +356,7 @@ const createPracticeRevTrial = function(b,t,folder,stim,bStart,correct_counter_v
   let trial = {
     type: jsPsychCategorizeHtml,
     stimulus: '',
-    key_answer: KEYS[0],
+    // key_answer: KEYS[0],
     correct_text: PRAC_COR_FB,
     incorrect_text: PRAC_INCOR_FB,
     on_start: setTrial,
@@ -426,7 +426,7 @@ const createPracticeRevTrial1 = function(b,t,folder,stim,bStart,correct_counter_
   let trial = {
     type: jsPsychCategorizeHtml,
     stimulus: '',
-    key_answer: KEYS[0],
+    // key_answer: KEYS[0],
     correct_text: COR_FB,
     incorrect_text: INCOR_FB,
     on_start: setTrial,
@@ -469,7 +469,7 @@ const createPracticeTrial = function(b,t,folder,stim,cor,bStart) {
   let trial = {
     type: jsPsychCategorizeHtml,
     stimulus: '',
-    key_answer: KEYS[0],
+    // key_answer: KEYS[0],
     correct_text: PRAC_COR_FB,
     incorrect_text: PRAC_INCOR_FB,
     on_start: setTrial,
@@ -508,7 +508,7 @@ const createPracticeTrial1 = function(b,t,folder,stim,cor,bStart) {
   let trial = {
     type: jsPsychCategorizeHtml,
     stimulus: '',
-    key_answer: KEYS[0],
+    // key_answer: KEYS[0],
     correct_text: COR_FB,
     incorrect_text: INCOR_FB,
     on_start: setTrial,

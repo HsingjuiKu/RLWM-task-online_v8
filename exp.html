@@ -43,7 +43,6 @@
   let timeline = [];
 
   // Retrieve subject ID from URL parameter "id", or fall back to a random seed
-  const urlParams = new URLSearchParams(window.location.search);
   let subjID = Number(urlParams.get("id"));
   // If no valid ID, generate a fallback based on current time (mod 20)
   let t = new Date();
@@ -58,7 +57,6 @@
   let file_name = `demoRLWM_${subjID}_${date}_${start_time}`;
 
   // Track number of times participant switches away from the tab
-  const IS_DEBUG = urlParams.get('debug') === 'true';
   let num_tab_switches = 0;
   document.addEventListener("visibilitychange", () => {
     if (IS_DEBUG) return;              // 调试模式时不做任何检查
