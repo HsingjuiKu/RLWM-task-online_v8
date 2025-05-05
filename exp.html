@@ -59,7 +59,7 @@
   // Track number of times participant switches away from the tab
   let num_tab_switches = 0;
   document.addEventListener("visibilitychange", () => {
-    if (IS_DEBUG) return;              // 调试模式时不做任何检查
+    // if (IS_DEBUG) return;
     if (document.visibilityState === "hidden") {
       if (num_tab_switches >= 3) {
         console.log('Ending exp: too many tab switches');

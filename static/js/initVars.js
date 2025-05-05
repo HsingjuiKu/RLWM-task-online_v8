@@ -4,7 +4,7 @@ functions rely on these variables as globals. */
 
 
 const urlParams = new URLSearchParams(window.location.search);
-const IS_DEBUG = urlParams.get("debug") === "true";
+const IS_DEBUG = (new URLSearchParams(window.location.search).get("debug") === "true");
 
 
 const IS_RUN_PRACTICE = true;
@@ -25,13 +25,13 @@ let FIX_DUR = 500;
 const imgP = 'static/img/';
 
 // feedback/timeout messages
-// const TO_MSG = '<div class="exp"><p class="center fb">You took too long to respond!</p></div>';
-// const COR_FB = '<div class="exp"><p class="center fb cor">+1</p></div>';
-// const INCOR_FB = '<div class="exp"><p class="center fb incor">0</p></div>';
+const TO_MSG = '<div class="exp"><p class="center fb">You took too long to respond!</p></div>';
+const COR_FB = '<div class="exp"><p class="center fb cor">+1</p></div>';
+const INCOR_FB = '<div class="exp"><p class="center fb incor">0</p></div>';
 
-const COR_FB    = `<span style="font-size:2em;color:green;">+1</span>`;
-const INCOR_FB  = `<span style="font-size:2em;color:red;">0</span>`;
-const TO_MSG    = `<span style="font-size:2em;color:red;">0</span>`;
+// const COR_FB    = `<span style="font-size:2em;color:green;">+1</span>`;
+// const INCOR_FB  = `<span style="font-size:2em;color:red;">0</span>`;
+// const TO_MSG    = `<span style="font-size:2em;color:red;">0</span>`;
 
 
 // const PRAC_COR_FB = '<div class="exp"><p class="center praccor fb">CORRECT KEY!</p></div>';

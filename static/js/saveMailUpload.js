@@ -1,14 +1,20 @@
 /* These functions will call the PHP files used for saving and uploading your data.
 You will only have to change the three string variables outside the functions. */
 
-// URL of where the PHP files are located -- replace with whatever website/directory you end up using
-const save_url = "https://experiments-ccn.berkeley.edu/demo-RLWM-JS/save_data.php";
-const upload_url = "https://experiments-ccn.berkeley.edu/demo-RLWM-JS/uploader.php";
-const mail_url = "https://experiments-ccn.berkeley.edu/demo-RLWM-JS/data/mailer.php";
+// // URL of where the PHP files are located -- replace with whatever website/directory you end up using
+// const save_url = "https://experiments-ccn.berkeley.edu/demo-RLWM-JS/save_data.php";
+// const upload_url = "https://experiments-ccn.berkeley.edu/demo-RLWM-JS/uploader.php";
+// const mail_url = "https://experiments-ccn.berkeley.edu/demo-RLWM-JS/data/mailer.php";
+
+
+const save_url     = "save_data.php";
+const upload_url   = "uploader.php";
+const mail_url     = "mailer.php";
+// const alert_url    = "touch_when_closing.php"; // 本地同目录下的 touch_when_closing.php
 
 // name of folder where data will be saved
-// const data_dir = "data";
-const data_dir = "319426353072";
+const data_dir = "data";
+// const data_dir = "319426353072";
 
 
 // save data as csv
