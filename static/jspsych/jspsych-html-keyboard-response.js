@@ -107,7 +107,7 @@ jsPsych.plugins["html-keyboard-response"] = (function() {
       // after a valid response, the stimulus will have the CSS class 'responded'
       // which can be used to provide visual feedback that a response was recorded
       display_element.querySelector('#jspsych-html-keyboard-response-stimulus').className += ' responded';
-
+      console.log('heelo')
       // only record the first response
       if (response.key == null) {
         response = info;

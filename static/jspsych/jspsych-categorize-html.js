@@ -177,6 +177,7 @@ jsPsych.plugins['categorize-html'] = (function() {
 
         // substitute answer in feedback string.
         var atext = "";
+        console.log('hello world', correct)
         if (correct) {
           atext = trial.correct_text.replace("%ANS%", trial.text_answer);
         } else {
