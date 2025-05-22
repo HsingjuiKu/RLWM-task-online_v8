@@ -59,7 +59,7 @@ jsPsych.plugins["html-keyboard-response"] = (function() {
   }
 
   plugin.trial = function(display_element, trial) {
-
+    console.log('html old se')
     var new_html = '<div id="jspsych-html-keyboard-response-stimulus">'+trial.stimulus+'</div>';
 
     // add prompt

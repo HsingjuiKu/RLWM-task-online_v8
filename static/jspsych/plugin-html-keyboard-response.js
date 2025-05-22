@@ -92,6 +92,7 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
     }
     static info = info;
     trial(display_element, trial) {
+      console.log('html respon se')
       var new_html = '<div id="jspsych-html-keyboard-response-stimulus">' + trial.stimulus + "</div>";
       if (trial.prompt !== null) {
         new_html += trial.prompt;

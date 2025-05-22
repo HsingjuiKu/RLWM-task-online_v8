@@ -193,6 +193,7 @@ const createRevTrial = function (b, t, folder, stim, bStart,
 
     trial_duration:    TRIAL_DUR,
     feedback_duration: FB_DUR,
+    show_feedback_on_timeout: true,
     show_stim_with_feedback: false,
     on_finish: finishTrial,
 
@@ -333,6 +334,7 @@ const createPracticeRevTrial = function (b, t, folder, stim, bStart,
 
     trial_duration:    TRIAL_DUR,
     feedback_duration: FB_DUR,
+    show_feedback_on_timeout: true,
     show_stim_with_feedback: false,
     on_finish: finishTrial,
 
@@ -385,6 +387,7 @@ const createPracticeRevTrial1 = function (b, t, folder, stim, bStart,
 
     trial_duration:    TRIAL_DUR,
     feedback_duration: FB_DUR,
+    show_feedback_on_timeout: true,
     show_stim_with_feedback: false,
     on_finish: finishTrial,
 
@@ -398,13 +401,11 @@ const createPracticeRevTrial1 = function (b, t, folder, stim, bStart,
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 const createPracticeTrial = function (b, t, folder, stim, cor) {
-
+  console.log('practice trial')
   timeline.push({
     type: jsPsychCategorizeHtml,
-    stimulus: () =>
-        `<div class="exp"><img class="stim center"
+    stimulus: `<div class="exp"><img class="stim center"
              src="${imgP}images${folder}/image${stim}.jpg"></div>`,
-
     key_answer: KEYS[cor],
     choices:     KEYS,
     correct_text:   PRAC_COR_FB,
@@ -413,6 +414,7 @@ const createPracticeTrial = function (b, t, folder, stim, cor) {
 
     trial_duration:    TRIAL_DUR,
     feedback_duration: FB_DUR,
+    show_feedback_on_timeout: true,
     show_stim_with_feedback: false,
     on_finish: data => {
       data.key_press  = KEYS.indexOf(data.key_press);
@@ -442,6 +444,7 @@ const createPracticeTrial1 = function (b, t, folder, stim, cor) {
 
     trial_duration:    TRIAL_DUR,
     feedback_duration: FB_DUR,
+    show_feedback_on_timeout: true,
     show_stim_with_feedback: false,
     on_finish: data => {
       data.key_press  = KEYS.indexOf(data.key_press);
