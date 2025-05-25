@@ -401,7 +401,6 @@ const createPracticeRevTrial1 = function (b, t, folder, stim, bStart,
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 const createPracticeTrial = function (b, t, folder, stim, cor) {
-  console.log('practice trial')
   timeline.push({
     type: jsPsychCategorizeHtml,
     stimulus: `<div class="exp"><img class="stim center"
