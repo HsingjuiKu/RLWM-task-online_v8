@@ -41,15 +41,28 @@
 </body>
 
 <script type="text/javascript">
+
+  window.jsPsych = initJsPsych({
+    preload_images: IMGS
+  });
+
   // Initialize an empty timeline array for jsPsych to fill
   let timeline = [];
 
   // Retrieve subject ID from URL parameter "id", or fall back to a random seed
-  let subjID = Number(urlParams.get("id"));
+  // let subjID = Number(urlParams.get("id"));
+  let subjID = Number(jsPsych.data.getURLVariable('id'));
   // If no valid ID, generate a fallback based on current time (mod 20)
   let t = new Date();
   let iseq = t.getTime() % 20;
   if (isNaN(subjID)) subjID = iseq;
+
+
+  IS_DEBUG = (jsPsych.data.getURLVariable('debug') === 'true');
+
+  if (IS_DEBUG) {
+    NUM_BLOCKS = 1;
+  }
 
   // Compute current date and time strings for filename
   let d = new Date();

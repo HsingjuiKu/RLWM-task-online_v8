@@ -3,9 +3,9 @@ imported before your other JS files containing your functions, especially if tho
 functions rely on these variables as globals. */
 
 
-const urlParams = new URLSearchParams(window.location.search);
-const IS_DEBUG = (new URLSearchParams(window.location.search).get("debug") === "true");
-
+// const urlParams = new URLSearchParams(window.location.search);
+// let IS_DEBUG = (new URLSearchParams(window.location.search).get('debug') === 'true');
+let IS_DEBUG = false;
 
 const IS_RUN_PRACTICE = true;
 const IS_RUN_TRAIN = true;
