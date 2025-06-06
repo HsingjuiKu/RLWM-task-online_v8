@@ -1,181 +1,134 @@
-var jsPsychHtmlKeyboardResponse = (function (jspsych) {
-  'use strict';
+const info = {
+  name: "html-keyboard-response",
+  version: _package.version,
+  parameters: {
+    stimulus: { /* HTML content to be shown during the trial */ },
+    choices: { /* List of allowed keys for response (or "NO_KEYS") */ },
+    prompt: { /* Optional text below the stimulus */ },
+    stimulus_duration: { /* Duration before stimulus is hidden (ms) */ },
+    trial_duration: { /* Total trial duration (ms), after which it auto-ends */ },
+    response_ends_trial: { /* Whether pressing a key ends the trial immediately */ }
+  },
+  data: {
+    response: {},    // Key that was pressed
+    rt: {},          // Reaction time in ms
+    stimulus: {}     // Stimulus that was shown
+  }
+};
 
-  var _package = {
-    name: "@jspsych/plugin-html-keyboard-response",
-    version: "2.0.0",
-    description: "jsPsych plugin for displaying a stimulus and getting a keyboard response",
-    type: "module",
-    main: "dist/index.cjs",
-    exports: {
-      import: "./dist/index.js",
-      require: "./dist/index.cjs"
-    },
-    typings: "dist/index.d.ts",
-    unpkg: "dist/index.browser.min.js",
-    files: [
-      "src",
-      "dist"
-    ],
-    source: "src/index.ts",
-    scripts: {
-      test: "jest",
-      "test:watch": "npm test -- --watch",
-      tsc: "tsc",
-      build: "rollup --config",
-      "build:watch": "npm run build -- --watch"
-    },
-    repository: {
-      type: "git",
-      url: "git+https://github.com/jspsych/jsPsych.git",
-      directory: "packages/plugin-html-keyboard-response"
-    },
-    author: "Josh de Leeuw",
-    license: "MIT",
-    bugs: {
-      url: "https://github.com/jspsych/jsPsych/issues"
-    },
-    homepage: "https://www.jspsych.org/latest/plugins/html-keyboard-response",
-    peerDependencies: {
-      jspsych: ">=7.1.0"
-    },
-    devDependencies: {
-      "@jspsych/config": "^3.0.0",
-      "@jspsych/test-utils": "^1.2.0"
-    }
-  };
+class HtmlKeyboardResponsePlugin {
+  constructor(jsPsych) {
+    this.jsPsych = jsPsych;
+  }
 
-  const info = {
-    name: "html-keyboard-response",
-    version: _package.version,
-    parameters: {
-      stimulus: {
-        type: jspsych.ParameterType.HTML_STRING,
-        default: void 0
-      },
-      choices: {
-        type: jspsych.ParameterType.KEYS,
-        default: "ALL_KEYS"
-      },
-      prompt: {
-        type: jspsych.ParameterType.HTML_STRING,
-        default: null
-      },
-      stimulus_duration: {
-        type: jspsych.ParameterType.INT,
-        default: null
-      },
-      trial_duration: {
-        type: jspsych.ParameterType.INT,
-        default: null
-      },
-      response_ends_trial: {
-        type: jspsych.ParameterType.BOOL,
-        default: true
-      }
-    },
-    data: {
-      response: {
-        type: jspsych.ParameterType.STRING
-      },
-      rt: {
-        type: jspsych.ParameterType.INT
-      },
-      stimulus: {
-        type: jspsych.ParameterType.STRING
-      }
+  static info = info;
+
+  trial(display_element, trial) {
+    // Create and display the stimulus HTML
+    var new_html = '<div id="jspsych-html-keyboard-response-stimulus">' + trial.stimulus + "</div>";
+
+    // Add prompt text if provided
+    if (trial.prompt !== null) {
+      new_html += trial.prompt;
     }
-  };
-  class HtmlKeyboardResponsePlugin {
-    constructor(jsPsych) {
-      this.jsPsych = jsPsych;
-    }
-    static info = info;
-    trial(display_element, trial) {
-      console.log('html respon se')
-      var new_html = '<div id="jspsych-html-keyboard-response-stimulus">' + trial.stimulus + "</div>";
-      if (trial.prompt !== null) {
-        new_html += trial.prompt;
+
+    // Render content in the DOM
+    display_element.innerHTML = new_html;
+
+    // Object to store response
+    var response = {
+      rt: null,
+      key: null
+    };
+
+    // Function to end the trial and save data
+    const end_trial = () => {
+      if (typeof keyboardListener !== "undefined") {
+        this.jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
       }
-      display_element.innerHTML = new_html;
-      var response = {
-        rt: null,
-        key: null
-      };
-      const end_trial = () => {
-        if (typeof keyboardListener !== "undefined") {
-          this.jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
-        }
-        var trial_data = {
-          rt: response.rt,
-          stimulus: trial.stimulus,
-          response: response.key
-        };
-        this.jsPsych.finishTrial(trial_data);
-      };
-      var after_response = (info2) => {
-        display_element.querySelector("#jspsych-html-keyboard-response-stimulus").className += " responded";
-        if (response.key == null) {
-          response = info2;
-        }
-        if (trial.response_ends_trial) {
-          end_trial();
-        }
-      };
-      if (trial.choices != "NO_KEYS") {
-        var keyboardListener = this.jsPsych.pluginAPI.getKeyboardResponse({
-          callback_function: after_response,
-          valid_responses: trial.choices,
-          rt_method: "performance",
-          persist: false,
-          allow_held_key: false
-        });
-      }
-      if (trial.stimulus_duration !== null) {
-        this.jsPsych.pluginAPI.setTimeout(() => {
-          display_element.querySelector(
-            "#jspsych-html-keyboard-response-stimulus"
-          ).style.visibility = "hidden";
-        }, trial.stimulus_duration);
-      }
-      if (trial.trial_duration !== null) {
-        this.jsPsych.pluginAPI.setTimeout(end_trial, trial.trial_duration);
-      }
-    }
-    simulate(trial, simulation_mode, simulation_options, load_callback) {
-      if (simulation_mode == "data-only") {
-        load_callback();
-        this.simulate_data_only(trial, simulation_options);
-      }
-      if (simulation_mode == "visual") {
-        this.simulate_visual(trial, simulation_options, load_callback);
-      }
-    }
-    create_simulation_data(trial, simulation_options) {
-      const default_data = {
+
+      var trial_data = {
+        rt: response.rt,
         stimulus: trial.stimulus,
-        rt: this.jsPsych.randomization.sampleExGaussian(500, 50, 1 / 150, true),
-        response: this.jsPsych.pluginAPI.getValidKey(trial.choices)
+        response: response.key
       };
-      const data = this.jsPsych.pluginAPI.mergeSimulationData(default_data, simulation_options);
-      this.jsPsych.pluginAPI.ensureSimulationDataConsistency(trial, data);
-      return data;
-    }
-    simulate_data_only(trial, simulation_options) {
-      const data = this.create_simulation_data(trial, simulation_options);
-      this.jsPsych.finishTrial(data);
-    }
-    simulate_visual(trial, simulation_options, load_callback) {
-      const data = this.create_simulation_data(trial, simulation_options);
-      const display_element = this.jsPsych.getDisplayElement();
-      this.trial(display_element, trial);
-      load_callback();
-      if (data.rt !== null) {
-        this.jsPsych.pluginAPI.pressKey(data.response, data.rt);
+
+      this.jsPsych.finishTrial(trial_data);
+    };
+
+    // Function to handle keypress
+    var after_response = (info2) => {
+      display_element.querySelector("#jspsych-html-keyboard-response-stimulus").className += " responded";
+
+      // Record only the first key press
+      if (response.key == null) {
+        response = info2;
       }
+
+      // If trial ends upon response, finish it now
+      if (trial.response_ends_trial) {
+        end_trial();
+      }
+    };
+
+    // Listen for keypresses unless choices is set to NO_KEYS
+    if (trial.choices != "NO_KEYS") {
+      var keyboardListener = this.jsPsych.pluginAPI.getKeyboardResponse({
+        callback_function: after_response,
+        valid_responses: trial.choices,
+        rt_method: "performance",
+        persist: false,
+        allow_held_key: false
+      });
+    }
+
+    // Automatically hide stimulus after stimulus_duration
+    if (trial.stimulus_duration !== null) {
+      this.jsPsych.pluginAPI.setTimeout(() => {
+        display_element.querySelector("#jspsych-html-keyboard-response-stimulus").style.visibility = "hidden";
+      }, trial.stimulus_duration);
+    }
+
+    // Automatically end trial after trial_duration
+    if (trial.trial_duration !== null) {
+      this.jsPsych.pluginAPI.setTimeout(end_trial, trial.trial_duration);
     }
   }
 
-  return HtmlKeyboardResponsePlugin;
+  // ----- Simulation Support -----
 
-})(jsPsychModule);
+  simulate(trial, simulation_mode, simulation_options, load_callback) {
+    if (simulation_mode == "data-only") {
+      load_callback();
+      this.simulate_data_only(trial, simulation_options);
+    }
+    if (simulation_mode == "visual") {
+      this.simulate_visual(trial, simulation_options, load_callback);
+    }
+  }
+
+  // Create simulated response data
+  create_simulation_data(trial, simulation_options) {
+    const default_data = {
+      stimulus: trial.stimulus,
+      rt: this.jsPsych.randomization.sampleExGaussian(500, 50, 1 / 150, true),
+      response: this.jsPsych.pluginAPI.getValidKey(trial.choices)
+    };
+    return this.jsPsych.pluginAPI.mergeSimulationData(default_data, simulation_options);
+  }
+
+  simulate_data_only(trial, simulation_options) {
+    const data = this.create_simulation_data(trial, simulation_options);
+    this.jsPsych.finishTrial(data);
+  }
+
+  simulate_visual(trial, simulation_options, load_callback) {
+    const data = this.create_simulation_data(trial, simulation_options);
+    const display_element = this.jsPsych.getDisplayElement();
+    this.trial(display_element, trial);
+    load_callback();
+    if (data.rt !== null) {
+      this.jsPsych.pluginAPI.pressKey(data.response, data.rt);
+    }
+  }
+}
